@@ -28,11 +28,16 @@ public class Usuario {
     }
 
     public boolean temCreditosSuficientes(double preco) {
-        return preco >= this.creditos;
+        return this.creditos >= preco;
     }
 
     public void debitarCreditos(double valor) {
-        // adiciona o valor aos créditos do usuário
+        if (valor < 0) {
+            throw new DadosInvalidosException("O valor do débito não pode ser negativo");
+        }
+        if (!temCreditosSuficientes(valor)) {
+            throw new CreditosInsuficientesException("Créditos insuficientes para realizar o débito");
+        }
         this.creditos = this.creditos - valor;
     }
 
