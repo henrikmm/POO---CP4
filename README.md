@@ -6,10 +6,8 @@
 
 | Integrante | RM | Turma |
 |---|---|---|
-| preencher | preencher | preencher |
-| preencher | preencher | preencher |
-| preencher | preencher | preencher |
-| preencher | preencher | preencher |
+| Henrique Mandrick | 562715 | 2CCPW|
+
 
 | Campo | Resultado |
 |---|---|
