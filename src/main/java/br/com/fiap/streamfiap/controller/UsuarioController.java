@@ -19,8 +19,8 @@ public class UsuarioController {
     // POST /api/usuarios - Cadastrar usuário (cria nova instância sem o id vindo do cliente)
     @PostMapping
     public ResponseEntity<Usuario> cadastrar(@RequestBody Usuario usuario) {
-        Usuario novo = new Usuario(usuario.getNome(), usuario.getIdade(), usuario.getCreditos());
-        return ResponseEntity.status(201).body(usuarioRepository.save(novo));
+        Usuario novoUsuario = new Usuario(usuario.getNome(), usuario.getIdade(), usuario.getCreditos());
+        return ResponseEntity.status(201).body(usuarioRepository.save(novoUsuario));
     }
 
     // GET /api/usuarios/{id} - Buscar usuário por ID

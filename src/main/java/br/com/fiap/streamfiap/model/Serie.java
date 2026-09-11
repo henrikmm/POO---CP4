@@ -1,5 +1,6 @@
 package br.com.fiap.streamfiap.model;
 
+import br.com.fiap.streamfiap.exception.DadosInvalidosException;
 import jakarta.persistence.Entity;
 
 @Entity
@@ -16,7 +17,7 @@ public class Serie extends Conteudo implements Promocionavel {
     // cria a série com os dados recebidos
     public Serie(String titulo, String categoria, int duracaoMinutos, int classificacaoEtaria, int numeroTemporadas) {
         super(titulo, categoria, duracaoMinutos, classificacaoEtaria, true);
-        this.numeroTemporadas = numeroTemporadas;
+        setNumeroTemporadas(numeroTemporadas);
     }
 
     // preço da série: 4.90 por temporada
@@ -31,5 +32,10 @@ public class Serie extends Conteudo implements Promocionavel {
     }
 
     public int getNumeroTemporadas() { return numeroTemporadas; }
-    public void setNumeroTemporadas(int numeroTemporadas) { this.numeroTemporadas = numeroTemporadas; }
+    public void setNumeroTemporadas(int numeroTemporadas) {
+        if (numeroTemporadas <= 0) {
+            throw new DadosInvalidosException("O número de temporadas deve ser maior que zero");
+        }
+        this.numeroTemporadas = numeroTemporadas;
+    }
 }

@@ -53,26 +53,26 @@ public class ConteudoController {
     // POST /api/conteudos/filme - cadastra um filme (cria nova instância sem o id vindo do cliente)
     @PostMapping("/filme")
     public ResponseEntity<Filme> cadastrarFilme(@RequestBody Filme filme) {
-        Filme novo = new Filme(filme.getTitulo(), filme.getCategoria(), filme.getDuracaoMinutos(),
+        Filme novoFilme = new Filme(filme.getTitulo(), filme.getCategoria(), filme.getDuracaoMinutos(),
                 filme.getClassificacaoEtaria(), filme.isDisponivel(), filme.isEstreia());
-        return ResponseEntity.status(201).body(conteudoRepository.save(novo));
+        return ResponseEntity.status(HttpStatus.CREATED).body(conteudoRepository.save(novoFilme));
     }
 
     // POST /api/conteudos/serie - cadastra uma série
     @PostMapping("/serie")
     public ResponseEntity<Serie> cadastrarSerie(@RequestBody Serie serie) {
-        Serie nova = new Serie(serie.getTitulo(), serie.getCategoria(), serie.getDuracaoMinutos(),
+        Serie novaSerie = new Serie(serie.getTitulo(), serie.getCategoria(), serie.getDuracaoMinutos(),
                 serie.getClassificacaoEtaria(), serie.getNumeroTemporadas());
-        return ResponseEntity.status(201).body(conteudoRepository.save(nova));
+        return ResponseEntity.status(HttpStatus.CREATED).body(conteudoRepository.save(novaSerie));
     }
 
     // POST /api/conteudos/documentario - cadastra um documentário
     @PostMapping("/documentario")
     public ResponseEntity<Documentario> cadastrarDocumentario(@RequestBody Documentario documentario) {
-        Documentario novo = new Documentario(documentario.getTitulo(), documentario.getCategoria(),
+        Documentario novoDocumentario = new Documentario(documentario.getTitulo(), documentario.getCategoria(),
                 documentario.getDuracaoMinutos(), documentario.getClassificacaoEtaria(),
                 documentario.isDisponivel(), documentario.getTema());
-        return ResponseEntity.status(201).body(conteudoRepository.save(novo));
+        return ResponseEntity.status(HttpStatus.CREATED).body(conteudoRepository.save(novoDocumentario));
     }
 
 }
