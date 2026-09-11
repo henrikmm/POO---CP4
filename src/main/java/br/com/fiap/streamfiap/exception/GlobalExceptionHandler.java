@@ -12,31 +12,35 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConteudoNaoEncontradoException.class)
     public ResponseEntity<Map<String, String>> handleConteudoNaoEncontrado(ConteudoNaoEncontradoException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("erro", e.getMessage()));
+        return respostaErro(HttpStatus.NOT_FOUND, e.getMessage());
     }
 
     @ExceptionHandler(CreditosInsuficientesException.class)
     public ResponseEntity<Map<String, String>> handleCreditosInsuficientes(CreditosInsuficientesException e) {
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(Map.of("erro", e.getMessage()));
+        return respostaErro(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
     }
 
     @ExceptionHandler(ConteudoIndisponivelException.class)
     public ResponseEntity<Map<String, String>> handleConteudoIndisponivel(ConteudoIndisponivelException e) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("erro", e.getMessage()));
+        return respostaErro(HttpStatus.CONFLICT, e.getMessage());
     }
 
     @ExceptionHandler(DadosInvalidosException.class)
     public ResponseEntity<Map<String, String>> handleDadosInvalidos(DadosInvalidosException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("erro", e.getMessage()));
+        return respostaErro(HttpStatus.BAD_REQUEST, e.getMessage());
     }
 
     @ExceptionHandler(ClassificacaoIndicativaException.class)
     public ResponseEntity<Map<String, String>> handleClassificacaoIndicativa(ClassificacaoIndicativaException e) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("erro", e.getMessage()));
+        return respostaErro(HttpStatus.FORBIDDEN, e.getMessage());
     }
 
     @ExceptionHandler(UsuarioNaoEncontradoException.class)
     public ResponseEntity<Map<String, String>> handleUsuarioNaoEncontrado(UsuarioNaoEncontradoException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("erro", e.getMessage()));
+        return respostaErro(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+
+    private ResponseEntity<Map<String, String>> respostaErro(HttpStatus status, String mensagem) {
+        return ResponseEntity.status(status).body(Map.of("erro", mensagem));
     }
 }
