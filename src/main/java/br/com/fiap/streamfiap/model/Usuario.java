@@ -2,6 +2,7 @@ package br.com.fiap.streamfiap.model;
 
 import br.com.fiap.streamfiap.exception.ClassificacaoIndicativaException;
 import br.com.fiap.streamfiap.exception.CreditosInsuficientesException;
+import br.com.fiap.streamfiap.exception.DadosInvalidosException;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,9 +21,9 @@ public class Usuario {
     }
 
     public Usuario(String nome, int idade, double creditos) {
-        this.nome = nome;
-        this.idade = idade;
-        this.creditos = creditos;
+        setNome(nome);
+        setIdade(idade);
+        setCreditos(creditos);
     }
 
     public boolean temCreditosSuficientes(double preco) {
@@ -67,11 +68,26 @@ public class Usuario {
     public void setId(Long id) { this.id = id; }
 
     public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        if (nome == null || nome.isBlank()) {
+            throw new DadosInvalidosException("O nome do usuário é obrigatório");
+        }
+        this.nome = nome.trim();
+    }
 
     public int getIdade() { return idade; }
-    public void setIdade(int idade) { this.idade = idade; }
+    public void setIdade(int idade) {
+        if (idade < 0) {
+            throw new DadosInvalidosException("A idade não pode ser negativa");
+        }
+        this.idade = idade;
+    }
 
     public double getCreditos() { return creditos; }
-    public void setCreditos(double creditos) { this.creditos = creditos; }
+    public void setCreditos(double creditos) {
+        if (creditos < 0) {
+            throw new DadosInvalidosException("Os créditos não podem ser negativos");
+        }
+        this.creditos = creditos;
+    }
 }

@@ -24,4 +24,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleConteudoIndisponivel(ConteudoIndisponivelException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("erro", e.getMessage()));
     }
+
+    @ExceptionHandler(DadosInvalidosException.class)
+    public ResponseEntity<Map<String, String>> handleDadosInvalidos(DadosInvalidosException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("erro", e.getMessage()));
+    }
 }
