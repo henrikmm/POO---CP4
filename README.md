@@ -7,6 +7,7 @@
 | Integrante | RM | Turma |
 |---|---|---|
 | Henrique Mandrick | 562715 | 2CCPW|
+| Ryan Amorim de Castro Santana | 564393| 2CCPW|
 
 
 | Campo | Resultado |
